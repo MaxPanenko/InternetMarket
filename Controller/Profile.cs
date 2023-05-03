@@ -59,7 +59,7 @@ namespace InternetMarket.Controller
                 {
                     if (password.Length < 6)
                     {
-                        Console.WriteLine("Password canno't be less then 6 characters");
+                        Console.WriteLine("Password canno't be less then 4 characters");
                         Console.Write("Try Again:");
                         password = Console.ReadLine();
                     }
