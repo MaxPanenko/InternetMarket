@@ -11,7 +11,33 @@ namespace InternetMarket.Model
 {
     public class Menu
     {
-       
+        public List<User> Emails { get; }
+
+        public User Email { get; set; }
+
+        public User UserName { get; }
+
+        public User Password { get; }
+
+        public bool TakenOrNot { get; } = false;
+
+        public Menu (string email,string name)
+        {
+            Emails = GetUsersData();
+            Email = Emails.FirstOrDefault(x => x.Email == email);
+            if (Email == null)
+            {
+                Email = new User(email);
+                Emails.Add(Email);
+                TakenOrNot = true;               
+                Save();
+            }
+            UserName.Name = name;
+            
+          
+        }
+        public Menu() { }
+
         public void Interface() 
         {
             Thread.Sleep(1000);
@@ -28,6 +54,32 @@ namespace InternetMarket.Model
             Console.WriteLine();
             Console.WriteLine($"1.Name\t\t2.Password\t  3.Email");
         }
-        
+        public void Save()
+        {
+            var formatter = new BinaryFormatter();
+
+            using (var fs = new FileStream("marketusers.dat", FileMode.OpenOrCreate))
+            {
+                formatter.Serialize(fs, Emails);
+            };
+        }
+        private List<User> GetUsersData()
+        {
+            var formatter = new BinaryFormatter();
+
+            using (var fs = new FileStream("MarketUsers.dat", FileMode.OpenOrCreate))
+            {
+                if (fs.Length > 0 && formatter.Deserialize(fs) is List<User> user)
+                {
+                    return user;
+                }
+                else
+                {
+                    return new List<User>();
+                }
+
+            };
+        }
+
     }
 }
