@@ -58,25 +58,13 @@ namespace InternetMarket.Controller
             {
                 while (CurrentUser.Password != password)
                 {
-                    if (password.Length < 6)
+                    if (password.Length < 6 || CurrentUser.Password != password)
                     {
-                        Console.WriteLine("Password canno't be less then 4 characters");
+                        Console.Clear();
+                        Console.WriteLine("Your password is incorrect");
                         Console.Write("Try Again:");
                         password = Console.ReadLine();
-                    }
-                    else
-                    {
-                        if (CurrentUser.Password != password)
-                        {
-                            Console.WriteLine("Your password is incorrect");
-                            Console.Write("Try Again:");
-                            password = Console.ReadLine();
-                        }
-
-
-
-
-                    }
+                    }                  
                 }
             }
             catch (Exception e)

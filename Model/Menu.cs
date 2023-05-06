@@ -32,9 +32,7 @@ namespace InternetMarket.Model
                 TakenOrNot = true;               
                 Save();
             }
-            UserName.Name = name;
-            
-          
+            UserName = new User(name); 
         }
         public Menu() { }
 
