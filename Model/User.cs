@@ -23,7 +23,6 @@ namespace InternetMarket.Model
         
         public string Email { get; set; }
 
-        
         public User(string name, string password, DateTime dateOfBirth, string email) 
         {
             #region Check statements
